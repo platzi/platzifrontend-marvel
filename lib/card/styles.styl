@@ -1,0 +1,46 @@
+.Card
+    width 170px
+    background #C2AC37
+    border 5px solid black
+    box-shadow 0 0 10px rgba(black,.5)
+    border-radius .5em
+    padding .5em
+    position relative
+    &--antagonist
+        .Card-container
+            background red
+            backface-visibility hidden
+            transform rotateY(180deg)
+        .Card-backface
+            transform rotateY(0)
+    &-backface
+        background-image url('../images/logo.jpg')
+        background-size 100%
+        background-repeat no-repeat
+        background-position center
+        position absolute
+        left 0
+        right 0
+        bottom 0
+        top 0
+        background-color #D8232A
+        backface-visibility hidden
+        transform rotateY(180deg)
+    &-description
+        background white
+        padding .5em
+        font-size 12px
+        margin-bottom .5em
+        border 2px solid black
+
+    &-name
+        color white
+        text-transform uppercase
+        margin 0 0 .5em 0
+        font-size 1em
+    &-image
+        width  100%
+    &-attack
+        background black
+        color white
+        font-size .7em

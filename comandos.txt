@@ -1,0 +1,47 @@
+windows
+npm install stylus -g
+
+
+mac/lunix
+sudo npm install stylus -g
+
+
+compilar archivo con stylus
+primero ve a la carpera de el archivo usando cd
+stylus nombre-de-el-archivo.styl
+
+escuchar cambios
+
+stylus app.styl -w
+
+comprimir archivo
+
+stylus app.styl -c
+
+
+instalar jade
+sudo npm install -g jade
+
+
+compilar jade
+jade index.jade
+
+
+hmtl legible en jade
+jade index.jade -P      <--(las "P" es mayuscula)
+
+exportar achivo stylus a otra carpeta
+
+stylus -w -c -o  ../public/css/ app.styl
+
+instalar nib
+
+sudo npm install nib -g
+
+
+linea final de stylus usando nib
+
+ylus -u nib  -w -c -o  ../public/css/ app.styl
+  watching /usr/local/lib/node_modules/stylus/lib/functions/index.styl
+  watching card/styles.styl
+  compiled ../publ
