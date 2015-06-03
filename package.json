@@ -2,6 +2,7 @@
   "scripts": {
     "jade": "jade --watch --pretty lib/*.jade --out .",
     "styl": "stylus --use nib --compress --watch lib/app.styl --out public/css",
-    "serve": "http-server ."
+    "serve": "http-server .",
+    "babel": "babel --watch lib --out-dir public"
   }
 }
