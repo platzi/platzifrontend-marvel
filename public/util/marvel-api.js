@@ -10,21 +10,32 @@ var MarvelApi = (function () {
   function MarvelApi(key) {
     _classCallCheck(this, MarvelApi);
 
+    // constructor se llama cuando instanciamos nuestra clase con new MarvelApi()
     this.key = key;
-    this.baseUrl = 'http://gateway.marvel.com/v1/public/';
+    this.baseUrl = 'http://gateway.marvel.com/v1/public/'
+    // asignar propiedades a this
+    ;
   }
 
   _createClass(MarvelApi, [{
     key: 'findSeries',
     value: function findSeries(title) {
       var url = '' + this.baseUrl + 'series?title=' + title + '&apikey=' + this.key;
-      return Promise.resolve($.get(url)).then(function (res) {
-        return res.data.results[0];
+      // construimos la url que se necesita para obtener datos de los avengers
+      return Promise.resolve($.get(url))
+      // hace que la peticion de jQuery se vuelva una Promise
+      .then(function (res) {
+        return res.data.results[0]
+        // regresamos una nueva promesa con el
+        // primer resultado de acuerdo a lo que nos regresa marvel
+        ;
       });
     }
   }, {
     key: 'getResourceURI',
     value: function getResourceURI(resourceURI) {
+      // este metodo es muy similar al de arriba.
+      // ¿Podrías crear un método interno al que llamen estos dos?
       var url = '' + resourceURI + '?apikey=' + this.key;
       return Promise.resolve($.get(url)).then(function (res) {
         return res.data.results[0];
@@ -35,4 +46,6 @@ var MarvelApi = (function () {
   return MarvelApi;
 })();
 
-window.MarvelApi = MarvelApi;
+window.MarvelApi = MarvelApi
+// asigna MarvelApi como variable global
+;
