@@ -22,14 +22,25 @@ var MarvelApi = (function () {
     value: function findSeries(title) {
       var url = '' + this.baseUrl + 'series?title=' + title + '&apikey=' + this.key;
       // construimos la url que se necesita para obtener datos de los avengers
-      return Promise.resolve($.get(url))
-      // hace que la peticion de jQuery se vuelva una Promise
-      .then(function (res) {
-        return res.data.results[0]
-        // regresamos una nueva promesa con el
-        // primer resultado de acuerdo a lo que nos regresa marvel
-        ;
-      });
+
+      // siempre pide datos a la API de marvel
+      if (localStorage[url]) {
+        var datos = localStorage[url];
+        datos = JSON.parse(datos);
+        console.log('Hola desde el cache');
+        return Promise.resolve(datos);
+      } else {
+        return Promise.resolve($.get(url))
+        // hace que la peticion de jQuery se vuelva una Promise
+        .then(function (res) {
+          var datos = res.data.results[0];
+          datos = JSON.stringify(datos);
+          localStorage[url] = datos;
+          // regresamos una nueva promesa con el
+          // primer resultado de acuerdo a lo que nos regresa marvel
+          return Promise.resolve(datos);
+        });
+      }
     }
   }, {
     key: 'getResourceURI',
@@ -37,7 +48,36 @@ var MarvelApi = (function () {
       // este metodo es muy similar al de arriba.
       // ¿Podrías crear un método interno al que llamen estos dos?
       var url = '' + resourceURI + '?apikey=' + this.key;
+      if (localStorage[url]) {
+        var datos = localStorage[url];
+        datos = JSON.parse(datos);
+        console.log('Hola desde el cache');
+        return Promise.resolve(datos);
+      }
+
       return Promise.resolve($.get(url)).then(function (res) {
+        var datos = res.data.results[0];
+        datos = JSON.stringify(datos);
+        localStorage[url] = datos;
+        return Promise.resolve(datos);
+      });
+    }
+  }, {
+    key: 'searchCharacter',
+    value: function searchCharacter(name) {
+      // 'http://gateway.marvel.com/v1/public/'
+      // /characters?name=man&apikey=a548aee0bde874ea460773884934a865
+      var url = '' + this.baseUrl + '/characters?name=' + name + '&apikey=' + this.key;
+      return new Promise(function (done) {
+        $.get(url).done(function (data) {
+          done(data);
+        });
+      }).then(function (res) {
+        // falsy -> 0, '', null, undefined, NaN
+        // !0, !'', !null, !undefined, !NaN -> true
+        if (!res.data.total) {
+          return Promise.reject('no se encontro el personaje');
+        }
         return res.data.results[0];
       });
     }
