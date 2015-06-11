@@ -4,9 +4,12 @@
     "jquery": "2.1.4"
   },
   "devDependencies": {
+    "http-server": "0.8.0",
+
     "browserify": "9.0.8",
     "babelify": "6.1.2",
     "jadeify": "4.3.0",
+
 
     "gulp": "3.9.0",
     "vinyl-buffer": "^1.0.0",
@@ -21,8 +24,7 @@
 
   },
   "scripts": {
-    "styl": "stylus --use nib --compress --watch lib/app.styl --out public/css",
-    "serve": "http-server .",
-    "build": "browserify -t babelify -t jadeify lib/app.js > public/app.js"
+    "clean": "rm -rf node_modules",
+    "serve": "http-server ."
   }
 }
