@@ -4,10 +4,9 @@ section(class="Layout")
         each card in [1,2,3,4,5]
             include ../card/template.jade
     section(class="Layout-main")
-        div(class="Layout-status") 
+        div(class="Layout-status")
             each name in ["Jeduan", "Leonidas"]
                 include ../status/template.jade
-            
 
         div(class="Layout-battle")
             include ../battle/template.jade
