@@ -1,5 +1,7 @@
 # platzifrontend-marvel
 
+Este es el código que se ha hecho durante las clases en vivo del curso de **#PlatziFrontend**, si quieres ver el curso completo puedes ir a [#platziFronted](http://www.platzi.com/frontend).
+
 ## Requisitos
 
 [`npm`](http://npmjs.org)
