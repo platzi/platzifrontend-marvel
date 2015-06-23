@@ -25,6 +25,7 @@
   },
   "scripts": {
     "clean": "rm -rf node_modules",
-    "serve": "http-server ."
+    "serve": "http-server .",
+    "jade" : "jade lib/index.jade --out ./"
   }
 }
